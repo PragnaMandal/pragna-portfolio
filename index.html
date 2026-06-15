@@ -11,17 +11,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg-void: #030712;
-      --bg-surface: #0d1117;
-      --bg-card: #111827;
-      --accent-cyan: #00d4ff;
+      --bg-void: #1a1f2e;
+      --bg-surface: #222840;
+      --bg-card: #252c42;
+      --accent-cyan: #00b4d8;
       --accent-purple: #7c3aed;
-      --accent-glow: #00ff88;
-      --text-primary: #e2e8f0;
-      --text-muted: #64748b;
-      --border: rgba(255,255,255,0.06);
-      --glow-cyan: 0 0 20px rgba(0,212,255,0.3);
-      --glow-purple: 0 0 20px rgba(124,58,237,0.3);
+      --accent-glow: #06d6a0;
+      --text-primary: #cdd6f4;
+      --text-muted: #8892b0;
+      --border: rgba(180,200,255,0.1);
+      --glow-cyan: 0 0 20px rgba(0,180,216,0.25);
+      --glow-purple: 0 0 20px rgba(124,58,237,0.25);
     }
 
     html { scroll-behavior: smooth; }
@@ -31,38 +31,18 @@
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      cursor: none;
     }
-
-    /* Custom cursor */
-    .cursor {
-      position: fixed; width: 10px; height: 10px;
-      background: var(--accent-cyan);
-      border-radius: 50%; pointer-events: none;
-      z-index: 9999; transform: translate(-50%,-50%);
-      transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-      mix-blend-mode: screen;
-    }
-    .cursor-ring {
-      position: fixed; width: 36px; height: 36px;
-      border: 1px solid rgba(0,212,255,0.5);
-      border-radius: 50%; pointer-events: none;
-      z-index: 9998; transform: translate(-50%,-50%);
-      transition: transform 0.15s ease-out, width 0.2s, height 0.2s;
-    }
-    body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 18px; height: 18px; background: var(--accent-purple); }
-    body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring { width: 54px; height: 54px; border-color: rgba(124,58,237,0.6); }
 
     /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-void); }
+    ::-webkit-scrollbar-track { background: var(--bg-surface); }
     ::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 2px; }
 
     /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
       padding: 1rem 2rem;
-      background: rgba(3,7,18,0.7);
+      background: rgba(26,31,46,0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
@@ -106,11 +86,11 @@
 
     /* Terminal window */
     .terminal {
-      background: rgba(13,17,23,0.85);
-      border: 1px solid rgba(0,212,255,0.2);
+      background: rgba(22,27,42,0.9);
+      border: 1px solid rgba(0,180,216,0.2);
       border-radius: 10px;
       width: 100%; max-width: 640px;
-      box-shadow: var(--glow-cyan), inset 0 1px 0 rgba(255,255,255,0.05);
+      box-shadow: var(--glow-cyan), inset 0 1px 0 rgba(255,255,255,0.04);
       overflow: hidden;
       margin-bottom: 2.5rem;
     }
@@ -137,7 +117,7 @@
     }
     .terminal-line .prompt { color: var(--accent-glow); }
     .terminal-line .cmd { color: var(--accent-cyan); }
-    .terminal-line .out { color: #c9d1d9; }
+    .terminal-line .out { color: #a9b4cf; }
     .terminal-line .highlight { color: var(--accent-purple); font-weight: 500; }
     .blink { animation: blink 1s steps(1) infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -198,7 +178,6 @@
       text-decoration: none;
       letter-spacing: 0.07em;
       transition: all 0.25s;
-      cursor: none;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
@@ -463,8 +442,6 @@
       .about-grid, .projects-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
       .about-stats { grid-template-columns: 1fr 1fr; }
       .hero-content { padding: 0 1rem; }
-      body { cursor: auto; }
-      .cursor, .cursor-ring { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -475,9 +452,6 @@
   </style>
 </head>
 <body>
-
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- NAV -->
   <nav>
@@ -536,7 +510,7 @@
       </div>
       <div class="about-stats reveal-right">
         <div class="stat-card">
-          <div class="stat-number">2nd</div>
+          <div class="stat-number">1st</div>
           <div class="stat-label">year b.tech DSAI</div>
         </div>
         <div class="stat-card">
@@ -689,23 +663,10 @@
   </section>
 
   <footer>
-    <p>built with <span>&#10084;</span> &amp; caffeine by <span>Pragna Jyoti Mandal</span> · 2026</p>
+    <p>built with <span>&#10084;</span> &amp; caffeine by <span>Pragna Jyoti Mandal</span> · 2025</p>
   </footer>
 
   <script>
-    // ─── CURSOR ───
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx=0, my=0, rx=0, ry=0;
-    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-    function animateCursor() {
-      cursor.style.left = mx+'px'; cursor.style.top = my+'px';
-      rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
-      ring.style.left = rx+'px'; ring.style.top = ry+'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
     // ─── NEURAL CANVAS ───
     const canvas = document.getElementById('neural-canvas');
     const ctx = canvas.getContext('2d');
@@ -731,8 +692,8 @@
           const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
           const d=Math.sqrt(dx*dx+dy*dy);
           if (d<LINK_DIST) {
-            const alpha = (1-d/LINK_DIST)*0.18;
-            ctx.strokeStyle = `rgba(0,212,255,${alpha})`;
+            const alpha = (1-d/LINK_DIST)*0.22;
+            ctx.strokeStyle = `rgba(0,180,216,${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x,nodes[i].y);
@@ -745,7 +706,7 @@
       nodes.forEach(n => {
         ctx.beginPath();
         ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-        ctx.fillStyle = 'rgba(0,212,255,0.5)';
+        ctx.fillStyle = 'rgba(0,180,216,0.55)';
         ctx.fill();
         // move
         n.x+=n.vx; n.y+=n.vy;
@@ -758,11 +719,11 @@
     window.addEventListener('resize', () => { resize(); initNodes(); });
 
     // mouse interaction with nodes
-    document.addEventListener('mousemove', e=>{
+    document.addEventListener('mousemove', ev=>{
       nodes.forEach(n=>{
-        const dx=e.clientX-n.x, dy=e.clientY-n.y;
+        const dx=ev.clientX-n.x, dy=ev.clientY-n.y;
         const d=Math.sqrt(dx*dx+dy*dy);
-        if (d > 0 && d < 80) { n.vx -= dx/d*0.2; n.vy -= dy/d*0.2; }
+        if (d<80) { n.vx -= dx/d*0.2; n.vy -= dy/d*0.2; }
       });
     });
 
